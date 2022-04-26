@@ -1,0 +1,112 @@
+[
+	{
+		"id": 1,
+		"komootLink": "https://www.komoot.com/tour/714998762?share_token=auBQbK6PoFdD8Yu8qYWWCpZM6TlKk852UWvWHsf7uMjEBNx8Qi&ref=wtd",
+		"startLocation": "Keynsham High St",
+		"endLocation": "Dyrham",
+		"elevation": 210,
+		"distance": 14.1,
+		"runners": ["Cat", "Finch"],
+		"startTime": "",
+		"endTime": ""
+	},
+	{
+		"id": 2,
+		"komootLink": "https://www.komoot.com/tour/714998762?share_token=auBQbK6PoFdD8Yu8qYWWCpZM6TlKk852UWvWHsf7uMjEBNx8Qi&ref=wtd",
+		"startLocation": "Dyrham",
+		"endLocation": "Little Sodbury",
+		"elevation": 160,
+		"distance": 10,
+		"runners": ["Toffee", "Ruth"],
+		"startTime": "",
+		"endTime": ""
+	},
+	{
+		"id": 3,
+		"komootLink": "https://www.komoot.com/tour/715011675?share_token=an8IM2X2CQfkUW3753P0gWqIg3sF2ebJnBxLwSvJht48Sht9JP&ref=wtd",
+		"startLocation": "Little Sodbury",
+		"endLocation": "Wootton under edge",
+		"elevation": 200,
+		"distance": 14.7,
+		"runners": ["Luke", "JJ"],
+		"startTime": "",
+		"endTime": ""
+	},
+	{
+		"id": 4,
+		"komootLink": "https://www.komoot.com/tour/715017937?share_token=aINlhrXqe9jmaIrW8135sOTAmYPHHHfaqFGAJzWUPpwHgqqfiy&ref=wtd",
+		"startLocation": "Wootton under edge",
+		"endLocation": "Coaley Peak",
+		"elevation": 480,
+		"distance": 14.4,
+		"runners": ["Ally", "Bubbles"],
+		"startTime": "",
+		"endTime": ""
+	},
+	{
+		"id": 5,
+		"komootLink": "https://www.komoot.com/tour/715031810?share_token=aX7fKCkzUnlXJExv1KB7OdGh95vN2GUYrz3lEs6zrkAUvWpcfC&ref=wtd",
+		"startLocation": "Coaley Peak",
+		"endLocation": "Painswick",
+		"elevation": 290,
+		"distance": 14,
+		"runners": ["Nom", "Finch"],
+		"startTime": "",
+		"endTime": ""
+	},
+	{
+		"id": 6,
+		"komootLink": "https://www.komoot.com/tour/715041772?share_token=aklOM0ca4yqv4Dc2XXMfT17E9JUkLnUZ8L3SBfNC8X6sPDk4a4&ref=wtd",
+		"startLocation": "Painswick",
+		"endLocation": "Birdlip",
+		"elevation": 230,
+		"distance": 9.35,
+		"runners": ["Luke", "Candy"],
+		"startTime": "",
+		"endTime": ""
+	},
+	{
+		"id": 7,
+		"komootLink": "https://www.komoot.com/tour/715048928?share_token=aPg2PmiGRZ3thPp40WuTYEE7icT2fl5Sp0CvdtC3a38PbW9Q75&ref=wtd",
+		"startLocation": "Birdlip",
+		"endLocation": "A40/Koloshi Indian Restaurant",
+		"elevation": 130,
+		"distance": 11.7,
+		"runners": ["Cat", "Bubbles"],
+		"startTime": "",
+		"endTime": ""
+	},
+	{
+		"id": 8,
+		"komootLink": "https://www.komoot.com/tour/714995605?share_token=ah5pvoILmuBTRkfMbiyX9Pw4QVzmJDq1zAqRlZfDGtTHh8ndqu&ref=wtd",
+		"startLocation": "A40/Koloshi Indian Restaurant",
+		"endLocation": "Winchcombe",
+		"elevation": 230,
+		"distance": 12.6,
+		"runners": ["Ally", "JJ"],
+		"startTime": "",
+		"endTime": ""
+	},
+	{
+		"id": 9,
+		"komootLink": "https://www.komoot.com/tour/715071233?share_token=afqsszyYjv0FWvgzQNAqs7awDvKsY1aNE5I3F2yTEAAG3hU1go&ref=wtd",
+		"startLocation": "Winchcombe",
+		"endLocation": "Broadway",
+		"elevation": 180,
+		"distance": 13.4,
+		"runners": ["Nom", "Bubbles"],
+		"startTime": "",
+		"endTime": ""
+	},
+	{
+		"id": 10,
+		"komootLink": "https://www.komoot.com/tour/715083026?share_token=apY8HVi7V7k7mqB2dXklS2FlbGwPDToucopJ29EGkVX74v5XBW&ref=wtd",
+		"startLocation": "Broadway",
+		"endLocation": "Long Marston",
+		"elevation": 20,
+		"distance": 14.8,
+		"runners": ["Cat", "Finch"],
+		"startTime": "",
+		"endTime": ""
+	}
+]
