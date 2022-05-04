@@ -1,7 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { TopAppBarComponentDev } from '@smui/top-app-bar';
-	import TopAppBar, { Row, Section, Title, AutoAdjust } from '@smui/top-app-bar';
+	import TopAppBar, {
+		Row,
+		Section,
+		Title,
+		AutoAdjust
+	} from '@smui/top-app-bar';
 	import IconButton from '@smui/icon-button';
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
 
@@ -17,8 +22,16 @@
 <svelte:head>
 	<!-- SMUI Styles -->
 	{#if darkTheme === undefined}
-		<link rel="stylesheet" href="/smui.css" media="(prefers-color-scheme: light)" />
-		<link rel="stylesheet" href="/smui-dark.css" media="screen and (prefers-color-scheme: dark)" />
+		<link
+			rel="stylesheet"
+			href="/smui.css"
+			media="(prefers-color-scheme: light)"
+		/>
+		<link
+			rel="stylesheet"
+			href="/smui-dark.css"
+			media="screen and (prefers-color-scheme: dark)"
+		/>
 	{:else if darkTheme}
 		<link rel="stylesheet" href="/smui.css" />
 		<link rel="stylesheet" href="/smui-dark.css" media="screen" />
@@ -30,8 +43,8 @@
 <TopAppBar bind:this={topAppBar} variant="standard">
 	<Row>
 		<Section>
-			<IconButton class="material-icons">menu</IconButton>
-			<Title>Standard</Title>
+			<!-- <IconButton class="material-icons">menu</IconButton> -->
+			<Title>Running for Jarj</Title>
 		</Section>
 		<Section align="end" toolbar>
 			<IconButton
@@ -45,7 +58,14 @@
 	</Row>
 </TopAppBar>
 <AutoAdjust {topAppBar}
-	><LayoutGrid><Cell><div class="mdc-typography--body1"><slot /></div></Cell></LayoutGrid
+	><LayoutGrid
+		style="max-width: 1080px; 
+	margin: 0 auto !important;"
+		><Cell span={12}
+			><div class="mdc-typography--body1" style="justify-content: center;">
+				<slot />
+			</div></Cell
+		></LayoutGrid
 	></AutoAdjust
 >
 

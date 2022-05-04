@@ -5,7 +5,7 @@
 	export let section;
 </script>
 
-<div>
+<div class="runners">
 	<SelectRunner
 		{users}
 		selectedUser={section.users[0] || {}}
@@ -18,5 +18,10 @@
 	/>
 </div>
 
-<style>
+<style type="text/scss">
+	.runners {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+	}
 </style>
