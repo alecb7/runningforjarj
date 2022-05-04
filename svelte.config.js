@@ -9,7 +9,11 @@ const config = {
 
 	kit: {
 		adapter: static_adapter()
-	}
+	},
+	paths: {
+		base: '/runningforjarj',
+		assets: '/runningforjarj'
+	  },
 };
 
 export default config;
