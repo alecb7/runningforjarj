@@ -4,7 +4,7 @@
 	"scripts": {
 		"dev": "svelte-kit dev --port 3030",
 		"build": "rm -rf build && svelte-kit build",
-		"deploy": "gh-pages -d build -t true",
+		"deploy": "node ./gh-pages.js",
 		"package": "svelte-kit package",
 		"preview": "svelte-kit preview",
 		"test": "playwright test",
