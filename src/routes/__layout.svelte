@@ -1,3 +1,13 @@
+<script context="module">
+	export const load = async ({ url }) => {
+		return {
+			props: {
+				key: url.pathname
+			}
+		};
+	};
+</script>
+
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { TopAppBarComponentDev } from '@smui/top-app-bar';
@@ -18,6 +28,8 @@
 		darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
 	});
 </script>
+
+
 
 <svelte:head>
 	<!-- SMUI Styles -->

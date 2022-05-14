@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Button, { Icon, Label } from '@smui/button';
 	import { base } from '$app/paths';
+	import Button, { Icon, Label } from '@smui/button';
 </script>
 
 <div class="page">
-	<img src="${base}/jarj.png" alt="Jarj" />
+	<img src={`${base}/jarj.png`} alt="Jarj" />
 
 	<div class="header">
 		<h1>#RunningForJarj</h1>
