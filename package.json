@@ -2,8 +2,9 @@
 	"name": "runningforjarj",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "svelte-kit dev --port 3030",
-		"build": "rm -rf build && svelte-kit build",
+		"dev": "svelte-kit dev",
+		"build": "npm run clean && svelte-kit build",
+		"clean": "node clean-build.js",
 		"deploy": "node ./gh-pages.js",
 		"package": "svelte-kit package",
 		"preview": "svelte-kit preview",
