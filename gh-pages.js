@@ -7,7 +7,7 @@ publish(
 		repo: 'https://github.com/alecb7/runningforjarj.git', // Update to point to your repository
 		user: {
 			name: 'Alec Buchanan', // update to use your name
-			email: 'samuele@stranianelli.com' // Update to use your email
+			email: 'alec-buchanan@hotmail.com' // Update to use your email
 		},
 		dotfiles: true
 	},
