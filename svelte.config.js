@@ -3,14 +3,14 @@ import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	preprocess: preprocess(),
+	preprocess: preprocess({postcss: true}),
 	kit: {
 		prerender : { default: true},
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
 			fallback: null
-		})
+		}),
 	},
 	paths: {
 		base: '/runningforjarj',
