@@ -1,29 +1,23 @@
-<script context="module">
-	/** @type {import('./[slug]').Load} */
-	export async function load({ fetch }) {
-		const url = import.meta.env.VITE_FETCH_URL;
-		const response = await fetch(`${url}/sections`);
-		const userResponse = await fetch(`${url}/users`);
-
-		return {
-			status: response.status,
-			props: {
-				sections: response.ok && (await response.json()),
-				users: userResponse.ok && (await userResponse.json())
-			}
-		};
-	}
-</script>
-
 <script lang="ts">
 	import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
 	import { Icon } from '@smui/common';
 	import SelectRunners from '../components/SelectRunners.svelte';
+	import { onMount } from 'svelte';
+
+	const url = import.meta.env.VITE_FETCH_URL;
 
 	export let sections;
 	export let users;
 
-	sections.sort((a, b) => parseInt(a.sectionID) - parseInt(b.sectionID));
+	onMount(async () => {
+		const response = await fetch(`${url}/sections`);
+		const userResponse = await fetch(`${url}/users`);
+
+		sections = await response.json();
+		users = await userResponse.json();
+
+		sections.sort((a, b) => parseInt(a.sectionID) - parseInt(b.sectionID));
+	});
 </script>
 
 <DataTable table$aria-label="Section list">
@@ -39,7 +33,8 @@
 		</Row>
 	</Head>
 	<Body>
-		{#each sections as section (section.sectionID)}
+
+		{#each sections || [] as section (section.sectionID)}
 			<Row>
 				<Cell>{section.sectionID}</Cell>
 				<Cell>{section.startLocation}</Cell>

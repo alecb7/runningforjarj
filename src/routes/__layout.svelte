@@ -1,13 +1,3 @@
-<script context="module">
-	export const load = async ({ url }) => {
-		return {
-			props: {
-				key: url.pathname
-			}
-		};
-	};
-</script>
-
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { TopAppBarComponentDev } from '@smui/top-app-bar';
