@@ -6,8 +6,8 @@
 
 	const url = import.meta.env.VITE_FETCH_URL;
 
-	export let sections;
-	export let users;
+	let sections;
+	let users;
 
 	onMount(async () => {
 		const response = await fetch(`${url}/sections`);
@@ -15,6 +15,8 @@
 
 		sections = await response.json();
 		users = await userResponse.json();
+
+		console.log(sections);
 
 		sections.sort((a, b) => parseInt(a.sectionID) - parseInt(b.sectionID));
 	});
@@ -33,24 +35,26 @@
 		</Row>
 	</Head>
 	<Body>
-
-		{#each sections || [] as section (section.sectionID)}
-			<Row>
-				<Cell>{section.sectionID}</Cell>
-				<Cell>{section.startLocation}</Cell>
-				<Cell>{section.endLocation}</Cell>
-				<Cell numeric>{section.distance}k</Cell>
-				<Cell numeric>{section.elevation}m</Cell>
-				<Cell
-					><a href={section.komootLink}>Komoot</a>
-					<span>
-						<Icon class="material-icons icon">open_in_new</Icon>
-					</span></Cell
-				>
-				<Cell style="overflow:visible"><SelectRunners {users} {section} /></Cell
-				>
-			</Row>
-		{/each}
+		{#if !!sections && !!users}
+			{#each sections as section (section.sectionID)}
+				<Row>
+					<Cell>{section.sectionID}</Cell>
+					<Cell>{section.startLocation}</Cell>
+					<Cell>{section.endLocation}</Cell>
+					<Cell numeric>{section.distance}k</Cell>
+					<Cell numeric>{section.elevation}m</Cell>
+					<Cell
+						><a href={section.komootLink}>Komoot</a>
+						<span>
+							<Icon class="material-icons icon">open_in_new</Icon>
+						</span></Cell
+					>
+					<Cell style="overflow:visible"
+						><SelectRunners {users} {section} /></Cell
+					>
+				</Row>
+			{/each}
+		{/if}
 	</Body>
 </DataTable>
 
