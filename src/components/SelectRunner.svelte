@@ -1,5 +1,6 @@
 <script type="ts">
 	import Select from 'svelte-select';
+	import { getColour } from '../utils/colours';
 	export let selectedUser;
 	export let users;
 	export let sectionID;
@@ -8,20 +9,7 @@
 	let selectedUserID = selectedUser?.userID || '';
 	let sectionUserID = selectedUser?.sectionUserID || '';
 
-	const colours = {
-		'1': '#ff9900',
-		'2': '#9900ff',
-		'3': '#ff00ff',
-		'4': '#4a86e8',
-		'5': '#00ff00',
-		'6': '#ffffff',
-		'7': '#b7b7b7',
-		'8': '#ff0000',
-		'9': '#ffff00',
-		'10': '#00ffff'
-	};
-
-	$: selectedColor = colours[selectedUserID];
+	$: selectedColor = getColour(selectedUserID);
 
 	const addUserToSection = async (userID) => {
 		const res = await fetch(`${url}/sections/users/add`, {
