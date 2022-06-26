@@ -5,12 +5,12 @@ import preprocess from 'svelte-preprocess';
 const config = {
 	preprocess: preprocess(),
 	kit: {
-		prerender: { default: true },
+		prerender: { default: false },
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
 			fallback: 'index.html'
-		})
+		}),
 	},
 	paths: {
 		base: '/runningforjarj',

@@ -2,7 +2,6 @@
 	/** @type {import('./[slug]').Load} */
 	export async function load({ params, fetch }) {
 		const url = import.meta.env.VITE_FETCH_URL;
-		console.log("pooo")
 		const sectionId = params.sectionId;
 		const response = await fetch(`${url}/sections/${sectionId}`);
 		const section = await response.json();

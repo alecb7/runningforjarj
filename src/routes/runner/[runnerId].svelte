@@ -4,11 +4,21 @@
 		const url = import.meta.env.VITE_FETCH_URL;
 		const runnerId = params.runnerId;
 		const response = await fetch(`${url}/users/${runnerId}`);
+		const user = await response.json();
+
+		const sectionsResponse = await fetch(`${url}/sections`);
+		const sections = await sectionsResponse.json();
+
+		const userSections = sections
+			.filter((section) => section.users.some((u) => u.userID === user.userID))
+			.sort((a, b) => parseInt(a.sectionID) - parseInt(b.sectionID));
 
 		return {
 			status: response.status,
 			props: {
-				user: response.ok && (await response.json())
+				user,
+				userSections,
+				sections
 			}
 		};
 	}
@@ -17,30 +27,24 @@
 <script lang="ts">
 	import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
 	import { Icon } from '@smui/common';
-	import { onMount } from 'svelte';
 	import { getColour } from '../../utils/colours';
-import Button from '@smui/button';
-import { Label } from '@smui/common/elements';
+	import Button from '@smui/button';
+	import { Label } from '@smui/common/elements';
 
 	const url = import.meta.env.VITE_FETCH_URL;
 
 	export let user;
-	let sections;
-	let userSections;
-
-	onMount(async () => {
-		const sectionsResponse = await fetch(`${url}/sections`);
-		sections = await sectionsResponse.json();
-
-		userSections = sections
-			.filter((section) => section.users.some((u) => u.userID === user.userID))
-			.sort((a, b) => parseInt(a.sectionID) - parseInt(b.sectionID));
-	});
+	export let userSections;
+	export let sections;
 
 	const getPartner = (sectionID) => {
 		const section = sections.find((s) => s.sectionID === sectionID);
 		const partner = section.users.find((u) => u.userID !== user.userID);
 		return partner;
+	};
+
+	const sum = (array) => {
+		return array.reduce((a, b) => ({ distance: a.distance + b.distance }));
 	};
 </script>
 
@@ -85,5 +89,14 @@ import { Label } from '@smui/common/elements';
 				</Row>
 			{/each}
 		{/if}
+		<Row>
+			<Cell>Totals</Cell>
+			<Cell>Sections: {userSections.length}</Cell>
+			<Cell />
+			<Cell numeric>{sum(userSections).distance}k</Cell>
+			<Cell />
+			<Cell />
+			<Cell />
+		</Row>
 	</Body>
 </DataTable>
