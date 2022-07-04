@@ -3,6 +3,7 @@
 	export async function load({ params, fetch }) {
 		const url = import.meta.env.VITE_FETCH_URL;
 		const sectionId = params.sectionId;
+
 		const response = await fetch(`${url}/sections/${sectionId}`);
 		const section = await response.json();
 
@@ -23,6 +24,8 @@
 
 	export let section;
 
+	console.log(section)
+
 	let {
 		sectionID,
 		startLocation,
@@ -30,7 +33,7 @@
 		distance,
 		elevation,
 		komootLink,
-		users
+		u
 	} = section;
 </script>
 
@@ -46,13 +49,13 @@
 			<Icon class="material-icons icon">open_in_new</Icon>
 		</span>
 	</p>
-	{#each users as user}
+	{#each u as user}
 		<p>
 			<Button
 				href={`/runner/${user.userID}`}
 				class="runners-button"
 				style="color: {getColour(user.userID)}"
-				><Label>{user.userID}</Label>
+				><Label>{user.name}</Label>
 			</Button>
 		</p>
 	{/each}

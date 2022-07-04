@@ -93,7 +93,7 @@
 			<Cell>Totals</Cell>
 			<Cell>Sections: {userSections.length}</Cell>
 			<Cell />
-			<Cell numeric>{sum(userSections).distance}k</Cell>
+			<Cell numeric>{sum(userSections).distance.toFixed(2)}k</Cell>
 			<Cell />
 			<Cell />
 			<Cell />
