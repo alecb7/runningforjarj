@@ -5,7 +5,7 @@ import preprocess from 'svelte-preprocess';
 const config = {
 	preprocess: preprocess(),
 	kit: {
-		prerender: { default: false },
+		prerender: { default: true },
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
