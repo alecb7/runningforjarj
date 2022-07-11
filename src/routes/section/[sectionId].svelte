@@ -12,7 +12,7 @@
 			sectionId > 1
 				? sections.find((s) => s.sectionID === `${parseInt(sectionId) - 1}`)
 				: {};
-
+		console.log(section);
 		return {
 			status: response.status,
 			props: {
@@ -25,7 +25,6 @@
 </script>
 
 <script lang="ts">
-	import { Icon } from '@smui/common';
 	import { getColour } from '../../utils/colours';
 	import Button from '@smui/button';
 	import { Label } from '@smui/common/elements';
@@ -36,10 +35,10 @@
 	export let section;
 	export let previousSection;
 	export let sectionId;
+	export let canStart = !!previousSection.startTime && !section.startTime;
 
 	let loading;
-
-	let { startLocation, endLocation, users, startTime, endTime } = section;
+	let startTime = section.startTime;
 
 	const start = async () => {
 		loading = true;
@@ -58,13 +57,11 @@
 		startTime = newStartTime;
 		loading = false;
 	};
-
-	const canStart = !!previousSection.startTime && !startTime;
 </script>
 
 <div class="title-container">
-	<h1>{startLocation} to {endLocation}</h1>
-	{#if startTime && !endTime}
+	<h1>{section.startLocation} to {section.endLocation}</h1>
+	{#if section.startTime && !section.endTime}
 		<div class="ring-container">
 			<div class="ringring" />
 			<div class="circle" />
@@ -74,7 +71,7 @@
 
 <p>Runners:</p>
 <div class="runners">
-	{#each users as user}
+	{#each section.users as user}
 		<p class="runner">
 			<Button
 				href={`/runner/${user.userID}`}
@@ -86,8 +83,8 @@
 		</p>
 	{/each}
 </div>
-{#if startTime}
-	<p>Started: {moment(startTime).format('dddd: h:mmA')}</p>
+{#if section.startTime}
+	<p>Started: {moment(section.startTime).format('dddd: h:mmA')}</p>
 {:else if canStart}
 	<Button
 		disabled={loading}
@@ -96,8 +93,13 @@
 		on:click={start}><Label>START</Label></Button
 	>
 {/if}
-{#if endTime}
-	<p>Ended: {moment(endTime).format('dddd: h:mmA')}</p>
+{#if section.endTime}
+	<p>Ended: {moment(section.endTime).format('dddd: h:mmA')}</p>
+{/if}
+{#if sectionId !== '1'}
+	<Button href={`/section/${parseInt(sectionId) - 1}`} variant="outlined"
+		><Label>Previous Section</Label>
+	</Button>
 {/if}
 {#if sectionId !== '21'}
 	<Button href={`/section/${parseInt(sectionId) + 1}`} variant="outlined"
