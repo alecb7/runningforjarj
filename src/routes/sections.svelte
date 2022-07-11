@@ -1,8 +1,9 @@
 <script lang="ts">
 	import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
-	import { Icon } from '@smui/common';
 	import SelectRunners from '../components/SelectRunners.svelte';
 	import { onMount } from 'svelte';
+	import Button from '@smui/button';
+	import { Label } from '@smui/common/elements';
 
 	const url = import.meta.env.VITE_FETCH_URL;
 
@@ -22,33 +23,21 @@
 	});
 </script>
 
+<h1>Sections</h1>
+
 <DataTable table$aria-label="Section list">
-	<Head>
-		<Row>
-			<Cell>ID</Cell>
-			<Cell>Start Location</Cell>
-			<Cell>End Location</Cell>
-			<Cell numeric>Distance</Cell>
-			<Cell numeric>Elevation</Cell>
-			<Cell>Komoot</Cell>
-			<Cell>Runners</Cell>
-		</Row>
-	</Head>
 	<Body>
 		{#if !!sections && !!users}
 			{#each sections as section (section.sectionID)}
 				<Row>
-					<Cell>{section.sectionID}</Cell>
-					<Cell>{section.startLocation}</Cell>
-					<Cell>{section.endLocation}</Cell>
-					<Cell numeric>{section.distance}k</Cell>
-					<Cell numeric>{section.elevation}m</Cell>
 					<Cell
-						><a href={section.komootLink}>Komoot</a>
-						<span>
-							<Icon class="material-icons icon">open_in_new</Icon>
-						</span></Cell
+						><Button
+							href={`/section/${section.sectionID}`}
+							variant="outlined"
+							><Label>{section.sectionID}</Label>
+						</Button></Cell
 					>
+					<Cell>{section.startLocation} - {section.endLocation}</Cell>
 					<Cell style="overflow:visible"
 						><SelectRunners {users} {section} /></Cell
 					>
