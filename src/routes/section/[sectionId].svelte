@@ -12,13 +12,16 @@
 			sectionId > 1
 				? sections.find((s) => s.sectionID === `${parseInt(sectionId) - 1}`)
 				: {};
-		console.log(section);
+
+		let canStart = !!previousSection.startTime && !section.startTime;
+
 		return {
 			status: response.status,
 			props: {
 				section,
 				previousSection,
-				sectionId
+				sectionId,
+				canStart
 			}
 		};
 	}
@@ -35,7 +38,7 @@
 	export let section;
 	export let previousSection;
 	export let sectionId;
-	export let canStart = !!previousSection.startTime && !section.startTime;
+	export let canStart;
 
 	let loading;
 	let startTime = section.startTime;
