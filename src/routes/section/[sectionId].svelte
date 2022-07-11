@@ -76,7 +76,7 @@
 			<Button
 				href={`/runner/${user.userID}`}
 				class="runners-button"
-				style="color: {getColour(user.userID)}"
+				style="background-color: {getColour(user.userID)}; color: black"
 				variant="outlined"
 				><Label>{user.name}</Label>
 			</Button>
