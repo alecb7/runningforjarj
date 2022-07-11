@@ -7,10 +7,17 @@
 		const response = await fetch(`${url}/sections`);
 		const sections = await response.json();
 
+		const section = sections.find((s) => s.sectionID === sectionId);
+		const previousSection =
+			sectionId > 1
+				? sections.find((s) => s.sectionID === `${parseInt(sectionId) - 1}`)
+				: {};
+
 		return {
 			status: response.status,
 			props: {
-				sections,
+				section,
+				previousSection,
 				sectionId
 			}
 		};
@@ -26,14 +33,10 @@
 
 	const url = import.meta.env.VITE_FETCH_URL;
 
-	export let sections;
+	export let section;
+	export let previousSection;
 	export let sectionId;
 
-	const section = sections.find((s) => s.sectionID === sectionId);
-	const previousSection =
-		sectionId > 1
-			? sections.find((s) => s.sectionID === `${parseInt(sectionId) - 1}`)
-			: {};
 	let loading;
 
 	let { startLocation, endLocation, users, startTime, endTime } = section;
@@ -97,9 +100,7 @@
 	<p>Ended: {moment(endTime).format('dddd: h:mmA')}</p>
 {/if}
 {#if sectionId !== '21'}
-	<Button
-		href={`/section/${parseInt(sectionId) + 1}`}
-		variant="outlined"
+	<Button href={`/section/${parseInt(sectionId) + 1}`} variant="outlined"
 		><Label>Next Section</Label>
 	</Button>
 {/if}
