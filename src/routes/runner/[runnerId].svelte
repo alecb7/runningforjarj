@@ -30,6 +30,7 @@
 	import { getColour } from '../../utils/colours';
 	import Button from '@smui/button';
 	import { Label } from '@smui/common/elements';
+	import moment from 'moment';
 
 	const url = import.meta.env.VITE_FETCH_URL;
 
@@ -51,27 +52,13 @@
 <h1 style={`color: ${getColour(user.userID)}`}>{user.name}</h1>
 
 <DataTable table$aria-label="Section list">
-	<Head>
-		<Row>
-			<Cell>ID</Cell>
-			<Cell>Start Location</Cell>
-			<Cell>End Location</Cell>
-			<Cell numeric>Distance</Cell>
-			<Cell numeric>Elevation</Cell>
-			<Cell>Komoot</Cell>
-			<Cell>Partner</Cell>
-		</Row>
-	</Head>
 	<Body>
 		{#if !!userSections && !!user}
 			{#each userSections as section (section.sectionID)}
 				{@const partner = getPartner(section.sectionID)}
 				<Row>
-					<Cell>{section.sectionID}</Cell>
-					<Cell>{section.startLocation}</Cell>
-					<Cell>{section.endLocation}</Cell>
+					<Cell>{section.startLocation} to {section.endLocation}</Cell>
 					<Cell numeric>{section.distance}k</Cell>
-					<Cell numeric>{section.elevation}m</Cell>
 					<Cell
 						><a href={section.komootLink}>Komoot</a>
 						<span>
@@ -86,6 +73,12 @@
 							><Label>{partner.name}</Label>
 						</Button></Cell
 					>
+					{#if section.startTime}
+						<Cell>{moment(section.startTime).format('dddd: h:mmA')}</Cell>
+					{/if}
+					{#if section.endTime}
+						<Cell>{moment(section.endTime).format('dddd: h:mmA')}</Cell>
+					{/if}
 				</Row>
 			{/each}
 		{/if}
@@ -94,9 +87,6 @@
 			<Cell>Sections: {userSections.length}</Cell>
 			<Cell />
 			<Cell numeric>{sum(userSections).distance.toFixed(2)}k</Cell>
-			<Cell />
-			<Cell />
-			<Cell />
 		</Row>
 	</Body>
 </DataTable>
