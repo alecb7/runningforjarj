@@ -34,13 +34,17 @@
 		return moment(section.EndTime);
 	};
 
-	const getStartClass = (section) => {
-		if (section.startTime && !section.endTime) {
-			return 'active';
+	const getStartClass = (section, time: 'start' | 'end') => {
+		if (section.startTime && !section.endTime && time === 'start') {
+			return 'background-color: green;';
+		}
+
+		if (section.startTime && !section.endTime && time === 'end') {
+			return ';';
 		}
 
 		if (section.startTime && section.endTime) {
-			return 'completed';
+			return 'background-color: grey;';
 		}
 	};
 </script>
@@ -52,12 +56,14 @@
 		{#if !!sections}
 			{#each sections as section (section.sectionID)}
 				<Row>
-					<Cell 
-						><Button class="button" href={`/section/${section.sectionID}`} variant="raised"
+					<Cell
+						><Button href={`/section/${section.sectionID}`} variant="raised"
 							><Label>{section.sectionID}</Label>
 						</Button></Cell
 					>
-					<Cell class="completed">{getStartTime(section)?.format('ddd H:mma')}</Cell><Cell class="active">
+					<Cell style={`${getStartClass(section, 'start')}`}
+						>{getStartTime(section)?.format('ddd H:mma')}</Cell
+					><Cell style={`${getStartClass(section, 'end')}`}>
 						{getEndTime(section)?.format('ddd H:mma')}
 					</Cell>
 				</Row>
@@ -66,15 +72,10 @@
 	</Body>
 </DataTable>
 
-<style type="text/scss">
-    * :global(.completed) {
-		background-color: grey;
+<style>
+	* :global(.icon) {
+		font-size: 16px;
 	}
-
-    * :global(.active) {
-		background-color: green;
-    }
-
 	@keyframes pulse {
 		0% {
 			background-color: #81c784;
