@@ -44,7 +44,6 @@ import { updateSections } from '../../utils/pace';
 	export let canStart;
 
 	let loading;
-	let startTime = section.startTime;
 
 	const start = async () => {
 		loading = true;
@@ -60,14 +59,13 @@ import { updateSections } from '../../utils/pace';
 			})
 		});
 
-		startTime = newStartTime;
 		loading = false;
 	};
 </script>
 
 <div class="title-container">
 	<h1>{section.startLocation} to {section.endLocation}</h1>
-	{#if startTime && !section.endTime}
+	{#if section.startTime && !section.endTime}
 		<div class="ring-container">
 			<div class="ringring" />
 			<div class="circle" />
@@ -89,7 +87,7 @@ import { updateSections } from '../../utils/pace';
 		</p>
 	{/each}
 </div>
-{#if startTime}
+{#if section.startTime}
 	<p>Started: {moment(section.startTime).format('dddd: h:mma')}</p>
 {:else if canStart}
 	<Button

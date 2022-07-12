@@ -1,6 +1,5 @@
 <script lang="ts">
 	import DataTable, { Body, Row, Cell } from '@smui/data-table';
-	import SelectRunners from '../components/SelectRunners.svelte';
 	import { onMount } from 'svelte';
 	import Button from '@smui/button';
 	import { Label } from '@smui/common/elements';
@@ -10,14 +9,11 @@
 	const url = import.meta.env.VITE_FETCH_URL;
 
 	let sections;
-	let users;
 
 	onMount(async () => {
 		const response = await fetch(`${url}/sections`);
-		const userResponse = await fetch(`${url}/users`);
 
 		const sectionsRes = await response.json();
-		users = await userResponse.json();
 
 		sections = updateSections(sectionsRes);
 	});
@@ -37,37 +33,54 @@
 
 		return moment(section.EndTime);
 	};
+
+	const getStartClass = (section) => {
+		if (section.startTime && !section.endTime) {
+			return 'active';
+		}
+
+		if (section.startTime && section.endTime) {
+			return 'completed';
+		}
+	};
 </script>
 
-<h1>Sections</h1>
+<h1>Schedule</h1>
 
-<DataTable table$aria-label="Section list">
+<DataTable table$aria-label="Section list" style="width: 100%">
 	<Body>
-		{#if !!sections && !!users}
+		{#if !!sections}
 			{#each sections as section (section.sectionID)}
 				<Row>
-					<Cell
-						><Button href={`/section/${section.sectionID}`} variant="outlined"
+					<Cell 
+						><Button class="button" href={`/section/${section.sectionID}`} variant="raised"
 							><Label>{section.sectionID}</Label>
 						</Button></Cell
 					>
-					<Cell>{section.startLocation} - {section.endLocation}</Cell>
-					<Cell
-						>{getStartTime(section)?.format('ddd H:mma')} - {getEndTime(section)?.format(
-							'ddd H:mma'
-						)}</Cell
-					>
-					<Cell style="overflow:visible"
-						><SelectRunners {users} {section} /></Cell
-					>
+					<Cell class="completed">{getStartTime(section)?.format('ddd H:mma')}</Cell><Cell class="active">
+						{getEndTime(section)?.format('ddd H:mma')}
+					</Cell>
 				</Row>
 			{/each}
 		{/if}
 	</Body>
 </DataTable>
 
-<style>
-	* :global(.icon) {
-		font-size: 16px;
+<style type="text/scss">
+    * :global(.completed) {
+		background-color: grey;
+	}
+
+    * :global(.active) {
+		background-color: green;
+    }
+
+	@keyframes pulse {
+		0% {
+			background-color: #81c784;
+		}
+		100% {
+			background-color: #388e3c;
+		}
 	}
 </style>
