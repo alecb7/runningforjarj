@@ -19,10 +19,6 @@
 		const sectionsRes = await response.json();
 		users = await userResponse.json();
 
-		const ordered = sectionsRes.sort(
-			(a, b) => parseInt(a.sectionID) - parseInt(b.sectionID)
-		);
-
 		sections = updateSections(ordered);
 	});
 
@@ -57,8 +53,8 @@
 					>
 					<Cell>{section.startLocation} - {section.endLocation}</Cell>
 					<Cell
-						>{getStartTime(section)?.format('ddd H:mm:ssa')} - {getEndTime(section)?.format(
-							'ddd H:mm:ssa'
+						>{getStartTime(section)?.format('ddd H:mma')} - {getEndTime(section)?.format(
+							'ddd H:mma'
 						)}</Cell
 					>
 					<Cell style="overflow:visible"

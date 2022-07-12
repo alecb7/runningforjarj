@@ -5,7 +5,9 @@
 		const sectionId = params.sectionId;
 
 		const response = await fetch(`${url}/sections`);
-		const sections = await response.json();
+		const sectionsRes = await response.json();
+
+		const sections = updateSections(sectionsRes)
 
 		const section = sections.find((s) => s.sectionID === sectionId);
 		const previousSection =
@@ -13,13 +15,14 @@
 				? sections.find((s) => s.sectionID === `${parseInt(sectionId) - 1}`)
 				: {};
 
-		let canStart = !!previousSection.startTime && !section.startTime;
+		let canStart =
+			(!!previousSection.startTime && !section.startTime) ||
+			(sectionId === '1' && !section.startTime);
 
 		return {
 			status: response.status,
 			props: {
 				section,
-				previousSection,
 				sectionId,
 				canStart
 			}
@@ -32,11 +35,11 @@
 	import Button from '@smui/button';
 	import { Label } from '@smui/common/elements';
 	import moment from 'moment';
+import { updateSections } from '../../utils/pace';
 
 	const url = import.meta.env.VITE_FETCH_URL;
 
 	export let section;
-	export let previousSection;
 	export let sectionId;
 	export let canStart;
 
@@ -64,7 +67,7 @@
 
 <div class="title-container">
 	<h1>{section.startLocation} to {section.endLocation}</h1>
-	{#if section.startTime && !section.endTime}
+	{#if startTime && !section.endTime}
 		<div class="ring-container">
 			<div class="ringring" />
 			<div class="circle" />
@@ -86,8 +89,8 @@
 		</p>
 	{/each}
 </div>
-{#if section.startTime}
-	<p>Started: {moment(section.startTime).format('dddd: h:mmA')}</p>
+{#if startTime}
+	<p>Started: {moment(section.startTime).format('dddd: h:mma')}</p>
 {:else if canStart}
 	<Button
 		disabled={loading}
@@ -97,7 +100,14 @@
 	>
 {/if}
 {#if section.endTime}
-	<p>Ended: {moment(section.endTime).format('dddd: h:mmA')}</p>
+	<p>Ended: {moment(section.endTime).format('ddd: h:mma')}</p>
+{/if}
+
+{#if section.estimatedStartTime}
+	<p>Estimated start: {moment(section.estimatedStartTime).format('ddd: h:mma')}</p>
+{/if}
+{#if section.estimatedEndTime}
+	<p>Estimated end: {moment(section.estimatedEndTime).format('ddd: h:mma')}</p>
 {/if}
 {#if sectionId !== '1'}
 	<Button href={`/section/${parseInt(sectionId) - 1}`} variant="outlined"
