@@ -33,6 +33,14 @@
 
 		return moment(section.startTime);
 	};
+
+	const getEndTime = (section) => {
+		if (section.estimatedEndTime) {
+			return section.estimatedEndTime;
+		}
+
+		return moment(section.EndTime);
+	};
 </script>
 
 <h1>Sections</h1>
@@ -49,7 +57,7 @@
 					>
 					<Cell>{section.startLocation} - {section.endLocation}</Cell>
 					<Cell
-						>{getStartTime(section).format('ddd H:mm:ssa')} - {section.estimatedEndTime?.format(
+						>{getStartTime(section)?.format('ddd H:mm:ssa')} - {getEndTime(section)?.format(
 							'ddd H:mm:ssa'
 						)}</Cell
 					>
