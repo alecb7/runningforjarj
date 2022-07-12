@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-71bd5f31.js",
+    "file": "start-6251c9a4.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -59,7 +59,7 @@
     ]
   },
   "src/routes/sections.svelte": {
-    "file": "pages/sections.svelte-83bbed38.js",
+    "file": "pages/sections.svelte-84bae4e0.js",
     "src": "src/routes/sections.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -69,6 +69,7 @@
       "_colours-f9de8a07.js",
       "_Button-d5e97f4c.js",
       "_Ripple-dfc7c852.js",
+      "_pace-0accffcb.js",
       "_moment-9ea79f3d.js",
       "_index-91f1aac7.js",
       "_prefixFilter-de33cb53.js"
@@ -94,7 +95,7 @@
     ]
   },
   "src/routes/section/[sectionId].svelte": {
-    "file": "pages/section/_sectionId_.svelte-ebe57a5c.js",
+    "file": "pages/section/_sectionId_.svelte-39cf3498.js",
     "src": "src/routes/section/[sectionId].svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -103,7 +104,8 @@
       "_colours-f9de8a07.js",
       "_Button-d5e97f4c.js",
       "_Ripple-dfc7c852.js",
-      "_moment-9ea79f3d.js"
+      "_moment-9ea79f3d.js",
+      "_pace-0accffcb.js"
     ],
     "css": [
       "assets/pages/section/_sectionId_.svelte-7ccb32e2.css"
@@ -168,6 +170,12 @@
       "_Ripple-dfc7c852.js",
       "_index-91f1aac7.js",
       "_prefixFilter-de33cb53.js"
+    ]
+  },
+  "_pace-0accffcb.js": {
+    "file": "chunks/pace-0accffcb.js",
+    "imports": [
+      "_moment-9ea79f3d.js"
     ]
   },
   "_moment-9ea79f3d.js": {
