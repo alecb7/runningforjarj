@@ -9,6 +9,8 @@
 	} from '@smui/top-app-bar';
 	import IconButton from '@smui/icon-button';
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
+	import Button from '@smui/button';
+	import { Label } from '@smui/common/elements';
 
 	let topAppBar: TopAppBarComponentDev;
 
@@ -18,8 +20,6 @@
 		darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
 	});
 </script>
-
-
 
 <svelte:head>
 	<!-- SMUI Styles -->
@@ -47,6 +47,9 @@
 		<Section>
 			<!-- <IconButton class="material-icons">menu</IconButton> -->
 			<Title>Running for Jarj</Title>
+		</Section>
+		<Section>
+			<Button href="/track" variant="raised"><Label>Track</Label></Button>
 		</Section>
 		<Section align="end" toolbar>
 			<IconButton
