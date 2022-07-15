@@ -31,6 +31,7 @@
 	import Button from '@smui/button';
 	import { Label } from '@smui/common/elements';
 	import moment from 'moment';
+import { getSectionStyle } from '../../utils/sectionStyles';
 
 	const url = import.meta.env.VITE_FETCH_URL;
 
@@ -60,12 +61,6 @@
 					<Cell>{section.startLocation} to {section.endLocation}</Cell>
 					<Cell numeric>{section.distance}k</Cell>
 					<Cell
-						><a href={section.komootLink}>Komoot</a>
-						<span>
-							<Icon class="material-icons icon">open_in_new</Icon>
-						</span></Cell
-					>
-					<Cell
 						><Button
 							href={`/runner/${partner.userID}`}
 							class="runners-button"
@@ -74,10 +69,10 @@
 						</Button></Cell
 					>
 					{#if section.startTime}
-						<Cell>{moment(section.startTime).format('dddd: h:mmA')}</Cell>
+						<Cell style={`${getSectionStyle(section, 'start')}`}>{moment(section.startTime).format('dddd: h:mmA')}</Cell>
 					{/if}
 					{#if section.endTime}
-						<Cell>{moment(section.endTime).format('dddd: h:mmA')}</Cell>
+						<Cell style={`${getSectionStyle(section, 'end')}`}>{moment(section.endTime).format('dddd: h:mmA')}</Cell>
 					{/if}
 				</Row>
 			{/each}

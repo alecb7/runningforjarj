@@ -6,6 +6,7 @@
 	import { Label } from '@smui/common/elements';
 	import { updateSections } from '../utils/pace';
 	import moment from 'moment';
+	import { getSectionStyle } from '../utils/sectionStyles';
 
 	const url = import.meta.env.VITE_FETCH_URL;
 
@@ -52,12 +53,12 @@
 						</Button></Cell
 					>
 					<Cell>{section.startLocation} - {section.endLocation}</Cell>
-					<Cell
-						>{getStartTime(section)?.format('ddd H:mma')} - {getEndTime(section)?.format(
-							'ddd H:mma'
-						)}</Cell
+					<Cell style={`${getSectionStyle(section, 'start')}`}
+						>{getStartTime(section)?.format('ddd H:mma')} - {getEndTime(
+							section
+						)?.format('ddd H:mma')}</Cell
 					>
-					<Cell style="overflow:visible"
+					<Cell style={`${getSectionStyle(section, 'start')}; overflow:visible`}
 						><SelectRunners {users} {section} /></Cell
 					>
 				</Row>
