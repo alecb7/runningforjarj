@@ -35,7 +35,7 @@
 			return section.estimatedEndTime;
 		}
 
-		return moment(section.EndTime);
+		return moment(section.endTime);
 	};
 </script>
 

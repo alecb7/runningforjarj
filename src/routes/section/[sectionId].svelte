@@ -7,7 +7,7 @@
 		const response = await fetch(`${url}/sections`);
 		const sectionsRes = await response.json();
 
-		const sections = updateSections(sectionsRes)
+		const sections = updateSections(sectionsRes);
 
 		const section = sections.find((s) => s.sectionID === sectionId);
 		const previousSection =
@@ -35,7 +35,7 @@
 	import Button from '@smui/button';
 	import { Label } from '@smui/common/elements';
 	import moment from 'moment';
-import { updateSections } from '../../utils/pace';
+	import { updateSections } from '../../utils/pace';
 
 	const url = import.meta.env.VITE_FETCH_URL;
 
@@ -102,7 +102,9 @@ import { updateSections } from '../../utils/pace';
 {/if}
 
 {#if section.estimatedStartTime}
-	<p>Estimated start: {moment(section.estimatedStartTime).format('ddd: h:mma')}</p>
+	<p>
+		Estimated start: {moment(section.estimatedStartTime).format('ddd: h:mma')}
+	</p>
 {/if}
 {#if section.estimatedEndTime}
 	<p>Estimated end: {moment(section.estimatedEndTime).format('ddd: h:mma')}</p>
