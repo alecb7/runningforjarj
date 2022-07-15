@@ -31,7 +31,7 @@
 	import Button from '@smui/button';
 	import { Label } from '@smui/common/elements';
 	import moment from 'moment';
-import { getSectionStyle } from '../../utils/sectionStyles';
+	import { getSectionStyle } from '../../utils/sectionStyles';
 
 	const url = import.meta.env.VITE_FETCH_URL;
 
@@ -69,18 +69,20 @@ import { getSectionStyle } from '../../utils/sectionStyles';
 						</Button></Cell
 					>
 					{#if section.startTime}
-						<Cell style={`${getSectionStyle(section, 'start')}`}>{moment(section.startTime).format('dddd: h:mmA')}</Cell>
+						<Cell style={`${getSectionStyle(section, 'start')}`}
+							>{moment(section.startTime).format('dddd: h:mmA')}</Cell
+						>
 					{/if}
 					{#if section.endTime}
-						<Cell style={`${getSectionStyle(section, 'end')}`}>{moment(section.endTime).format('dddd: h:mmA')}</Cell>
+						<Cell style={`${getSectionStyle(section, 'end')}`}
+							>{moment(section.endTime).format('dddd: h:mmA')}</Cell
+						>
 					{/if}
 				</Row>
 			{/each}
 		{/if}
 		<Row>
-			<Cell>Totals</Cell>
 			<Cell>Sections: {userSections.length}</Cell>
-			<Cell />
 			<Cell numeric>{sum(userSections).distance.toFixed(2)}k</Cell>
 		</Row>
 	</Body>
