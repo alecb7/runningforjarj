@@ -35,7 +35,7 @@
 	import Button from '@smui/button';
 	import { Label } from '@smui/common/elements';
 	import moment from 'moment';
-	import { updateSections } from '../../utils/pace';
+	import { getEstimatedTime, updateSections } from '../../utils/pace';
 
 	const url = import.meta.env.VITE_FETCH_URL;
 
@@ -44,10 +44,11 @@
 	export let canStart;
 
 	let loading;
+	let started;
 
 	const start = async () => {
 		loading = true;
-		const newStartTime = moment().toISOString();
+		started = moment().toISOString();
 		const res = await fetch(`${url}/sections/start`, {
 			method: 'POST',
 			headers: {
@@ -55,17 +56,18 @@
 			},
 			body: JSON.stringify({
 				sectionID: sectionId,
-				startTime: newStartTime
+				startTime: started
 			})
 		});
 
 		loading = false;
+		window.alert('Your section has been started, good luck!');
 	};
 </script>
 
 <div class="title-container">
 	<h1>{section.startLocation} to {section.endLocation}</h1>
-	{#if section.startTime && !section.endTime}
+	{#if (section.startTime || started) && !section.endTime}
 		<div class="ring-container">
 			<div class="ringring" />
 			<div class="circle" />
@@ -89,6 +91,8 @@
 </div>
 {#if section.startTime}
 	<p>Started: {moment(section.startTime).format('dddd: h:mma')}</p>
+{:else if started}
+	<p>Started: {moment(started).format('dddd: h:mma')}</p>
 {:else if canStart}
 	<Button
 		disabled={loading}
@@ -101,13 +105,22 @@
 	<p>Ended: {moment(section.endTime).format('ddd: h:mma')}</p>
 {/if}
 
-{#if section.estimatedStartTime}
+{#if section.estimatedStartTime && !started}
 	<p>
 		Estimated start: {moment(section.estimatedStartTime).format('ddd: h:mma')}
 	</p>
 {/if}
-{#if section.estimatedEndTime}
+{#if section.estimatedEndTime && !started}
 	<p>Estimated end: {moment(section.estimatedEndTime).format('ddd: h:mma')}</p>
+{/if}
+{#if section.estimatedEndTime && started}
+	<p>
+		Estimated end: {getEstimatedTime(
+			section.estimatedPace,
+			section.distance,
+			started
+		).format('ddd: h:mma')}
+	</p>
 {/if}
 {#if sectionId !== '1'}
 	<Button href={`/section/${parseInt(sectionId) - 1}`} variant="outlined"

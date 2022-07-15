@@ -58,6 +58,11 @@
 			{#each userSections as section (section.sectionID)}
 				{@const partner = getPartner(section.sectionID)}
 				<Row>
+					<Cell
+						><Button href={`/section/${section.sectionID}`} variant="raised"
+							><Label>{section.sectionID}</Label>
+						</Button></Cell
+					>
 					<Cell>{section.startLocation} to {section.endLocation}</Cell>
 					<Cell numeric>{section.distance}k</Cell>
 					<Cell

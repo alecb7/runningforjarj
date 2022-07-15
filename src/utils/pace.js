@@ -1,6 +1,7 @@
 import moment from 'moment';
 
 export const getEstimatedTime = (pace, distance, startTime) => {
+	console.log({ pace, distance, startTime });
 	var time = moment.utc(pace, 'HH:mm:ss');
 	const minutes = time.minutes() * distance;
 	const seconds = time.seconds() * distance;
@@ -14,7 +15,6 @@ export const getEstimatedTime = (pace, distance, startTime) => {
 };
 
 export const updateSections = (sectionsRes) => {
-
 	const sections = sectionsRes.sort(
 		(a, b) => parseInt(a.sectionID) - parseInt(b.sectionID)
 	);
@@ -24,8 +24,8 @@ export const updateSections = (sectionsRes) => {
 		const { startTime, endTime, estimatedPace, distance } = section;
 		let estimatedStartTime, estimatedEndTime;
 
-		if(index === 0 && !startTime) {
-			estimatedStartTime = moment("2022-07-16T04:00:00")
+		if (index === 0 && !startTime) {
+			estimatedStartTime = moment('2022-07-16T04:00:00');
 		}
 
 		if (!startTime && index !== 0) {
