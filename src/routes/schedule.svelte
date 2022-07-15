@@ -5,6 +5,7 @@
 	import { Label } from '@smui/common/elements';
 	import { updateSections } from '../utils/pace';
 	import moment from 'moment';
+	import { getSectionStyle } from '../utils/sectionStyles';
 
 	const url = import.meta.env.VITE_FETCH_URL;
 
@@ -31,21 +32,7 @@
 			return section.estimatedEndTime;
 		}
 
-		return moment(section.EndTime);
-	};
-
-	const getStartClass = (section, time: 'start' | 'end') => {
-		if (section.startTime && !section.endTime && time === 'start') {
-			return 'background-color: green;';
-		}
-
-		if (section.startTime && !section.endTime && time === 'end') {
-			return ';';
-		}
-
-		if (section.startTime && section.endTime) {
-			return 'background-color: grey;';
-		}
+		return moment(section.endTime);
 	};
 </script>
 
@@ -61,9 +48,9 @@
 							><Label>{section.sectionID}</Label>
 						</Button></Cell
 					>
-					<Cell style={`${getStartClass(section, 'start')}`}
+					<Cell style={`${getSectionStyle(section, 'start')}`}
 						>{getStartTime(section)?.format('ddd H:mma')}</Cell
-					><Cell style={`${getStartClass(section, 'end')}`}>
+					><Cell style={`${getSectionStyle(section, 'end')}`}>
 						{getEndTime(section)?.format('ddd H:mma')}
 					</Cell>
 				</Row>
