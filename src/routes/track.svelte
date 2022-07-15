@@ -46,16 +46,14 @@
 	<Body>
 		{#if !!sections && !!users}
 			{#each sections as section (section.sectionID)}
-				<Row>
+				<Row style={`${getSectionStyle(section, 'start')}`}>
 					<Cell>{section.startLocation} - {section.endLocation}</Cell>
-					<Cell style={`${getSectionStyle(section, 'start')}`}
+					<Cell
 						>{getStartTime(section)?.format('ddd H:mma')} - {getEndTime(
 							section
 						)?.format('ddd H:mma')}</Cell
 					>
-					<Cell
-						style={`${getSectionStyle(section, 'start')}; overflow:visible`}
-					>
+					<Cell>
 						{#if section.sectionID === '21'}
 							All
 						{:else}
