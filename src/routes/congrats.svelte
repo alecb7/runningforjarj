@@ -14,6 +14,7 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
+		background: url('https://media.giphy.com/media/PMV7yRpwGO5y9p3DBx/giphy.gif');
 	}
 
 	img {
