@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-fd6f3f87.js",
+    "file": "start-dbc62e63.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -12,6 +12,7 @@
       "src/routes/__layout.svelte",
       ".svelte-kit/runtime/components/error.svelte",
       "src/routes/index.svelte",
+      "src/routes/congrats.svelte",
       "src/routes/schedule.svelte",
       "src/routes/sections.svelte",
       "src/routes/drivers/duncan.svelte",
@@ -66,6 +67,19 @@
     ],
     "css": [
       "assets/pages/index.svelte-39e4ce82.css"
+    ]
+  },
+  "src/routes/congrats.svelte": {
+    "file": "pages/congrats.svelte-109d7928.js",
+    "src": "src/routes/congrats.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f7a6ba17.js",
+      "_paths-396f020f.js"
+    ],
+    "css": [
+      "assets/pages/congrats.svelte-b51cee1b.css"
     ]
   },
   "src/routes/schedule.svelte": {
