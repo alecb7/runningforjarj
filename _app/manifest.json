@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-dbc62e63.js",
+    "file": "start-95638322.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -70,7 +70,7 @@
     ]
   },
   "src/routes/congrats.svelte": {
-    "file": "pages/congrats.svelte-109d7928.js",
+    "file": "pages/congrats.svelte-f6b093c9.js",
     "src": "src/routes/congrats.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -79,7 +79,7 @@
       "_paths-396f020f.js"
     ],
     "css": [
-      "assets/pages/congrats.svelte-b51cee1b.css"
+      "assets/pages/congrats.svelte-65946ce1.css"
     ]
   },
   "src/routes/schedule.svelte": {
@@ -268,7 +268,7 @@
       "_sectionStyles-0e97f438.js"
     ],
     "css": [
-      "assets/pages/runners.svelte-8f7b4867.css"
+      "assets/pages/drivers.svelte-be8c6d06.css"
     ]
   },
   "src/routes/runners.svelte": {
@@ -283,7 +283,7 @@
       "_colours-f9de8a07.js"
     ],
     "css": [
-      "assets/pages/runners.svelte-8f7b4867.css"
+      "assets/pages/drivers.svelte-be8c6d06.css"
     ]
   },
   "src/routes/section/[sectionId].svelte": {
